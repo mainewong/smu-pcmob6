@@ -1,5 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { View, Text, StyleSheet, TextInput, TouchableOpacity } from "react-native";
 import { lightStyles, commonStyles } from "../styles/commonStyles";
 
 export default function CreateScreen({ navigation }) {

@@ -73,9 +73,7 @@ export default function IndexScreen({ navigation, route }) {
   // The function to render each row in our FlatList
   function renderItem({ item }) {
     return (
-      <TouchableOpacity
-        onPress={() => navigation.navigate("Details", { post: item })}
-      >
+      <TouchableOpacity onPress={() => navigation.navigate("Details", {id: item.id})}>
         <View
           style={{
             padding: 10,
