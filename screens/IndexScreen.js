@@ -78,6 +78,7 @@ export default function IndexScreen({ navigation, route }) {
         headers: { Authorization: `JWT ${token}` },
       })
       console.log(response);
+      //.filter is to refresh to show updated posts (eg, after delete and refresh automatically)
       setPosts(posts.filter((item) => item.id !== id));
     } catch (error) {
       console.log(error)
