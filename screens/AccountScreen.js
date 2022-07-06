@@ -13,6 +13,7 @@ import { API, API_WHOAMI } from "../constants/API";
 import { commonStyles, darkStyles, lightStyles } from "../styles/commonStyles";
 import { lightModeAction, darkModeAction } from "../redux/ducks/accountPref";
 import { logOutAction } from "../redux/ducks/blogAuth";
+import { changeModeAction } from "../redux/ducks/accountPref";
 
 export default function AccountScreen({ navigation }) {
   const [username, setUsername] = useState(null);
@@ -59,7 +60,8 @@ export default function AccountScreen({ navigation }) {
   }
 
   function switchMode() {
-    dispatch(isDark ? lightModeAction() : darkModeAction());
+    //dispatch(isDark ? lightModeAction() : darkModeAction());
+    dispatch(changeModeAction());
   }
 
   useEffect(() => {
