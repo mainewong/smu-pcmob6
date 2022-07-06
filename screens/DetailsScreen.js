@@ -4,12 +4,13 @@ import React, { useEffect, useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { useSelector } from "react-redux";
 import { API, API_POSTS } from "../constants/API";
-import { commonStyles, lightStyles } from "../styles/commonStyles";
+import { commonStyles, lightStyles, darkStyles } from "../styles/commonStyles";
 
 export default function ShowScreen({ navigation, route }) {
   const [post, setPost] = useState({ title: "", body: "" });
-  const styles = { ...lightStyles, ...commonStyles };
   const token = useSelector((state) => state.auth.token);
+  const isDark = useSelector((state) => state.accountPrefs.isDark);
+  const styles = { ...commonStyles, ...(isDark ? darkStyles : lightStyles) };
 
   useEffect(() => {
     navigation.setOptions({
@@ -47,7 +48,7 @@ export default function ShowScreen({ navigation, route }) {
   }
 
   function editPost() {
-    navigation.navigate("Edit");
+    navigation.navigate("Edit", { post: post });
   }
 
   return (

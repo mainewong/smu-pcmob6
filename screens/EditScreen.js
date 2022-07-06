@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from "react-native";
-import { commonStyles, lightStyles } from "../styles/commonStyles";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { API, API_POSTS } from "../constants/API";
 import axios from "axios";
+import { useSelector } from "react-redux";
+import { commonStyles, darkStyles, lightStyles } from "../styles/commonStyles";
 
 export default function EditScreen({ navigation, route }) {
 
-  const styles = { ...lightStyles, ...commonStyles }
-
+  const token = useSelector((state) => state.auth.token);
+  const isDark = useSelector((state) => state.accountPrefs.isDark);
+  const styles = { ...commonStyles, ...(isDark ? darkStyles : lightStyles) };
+  
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
@@ -23,8 +25,9 @@ export default function EditScreen({ navigation, route }) {
       "title": title,
       "content": content,
     }
-    const token = await AsyncStorage.getItem("token");
+
     const id = route.params.post.id
+
     try {
       console.log(token);
       const response = await axios.put(API + API_POSTS + "/" + id, post, {
