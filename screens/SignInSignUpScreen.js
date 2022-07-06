@@ -1,19 +1,19 @@
+import axios from "axios";
 import React, { useState } from "react";
 import {
-  Platform,
+  ActivityIndicator,
+  Keyboard,
+  LayoutAnimation,
   StyleSheet,
-  View,
   Text,
   TextInput,
   TouchableOpacity,
   UIManager,
-  ActivityIndicator,
-  Keyboard,
-  LayoutAnimation,
+  View,
 } from "react-native";
+import { useDispatch } from "react-redux";
 import { API, API_LOGIN, API_SIGNUP } from "../constants/API";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import axios from "axios";
+import { logInAction } from "../redux/ducks/blogAuth";
 
 if (
   Platform.OS === "android" &&
@@ -27,8 +27,12 @@ export default function SignInSignUpScreen({ navigation }) {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [errorText, setErrorText] = useState("");
+
   const [isLogIn, setIsLogIn] = useState(true);
+
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  const dispatch = useDispatch();
 
   async function login() {
     console.log("---- Login time ----");
@@ -41,26 +45,21 @@ export default function SignInSignUpScreen({ navigation }) {
         password,
       });
       console.log("Success logging in!");
-      // console.log(response);
-      await AsyncStorage.setItem("token", response.data.access_token);
+      console.log(response.data.access_token);
+      dispatch({ ...logInAction(), payload: response.data.access_token });
       setLoading(false);
-      setUsername("");
-      setPassword("");
       navigation.navigate("Logged In");
     } catch (error) {
       setLoading(false);
       console.log("Error logging in!");
       console.log(error);
       setErrorText(error.response.data.description);
-      if ((error.response.status = 404)) {
-        setErrorText("User does not exist");
-      }
     }
   }
 
   async function signUp() {
     if (password != confirmPassword) {
-      setErrorText("Your passwords don't match. Check and try again.")
+      setErrorText("Your passwords don't match. Check and try again.");
     } else {
       try {
         setLoading(true);
@@ -94,7 +93,6 @@ export default function SignInSignUpScreen({ navigation }) {
           style={styles.textInput}
           placeholder="Username:"
           placeholderTextColor="#003f5c"
-          value={username}
           onChangeText={(username) => setUsername(username)}
         />
       </View>
@@ -105,7 +103,6 @@ export default function SignInSignUpScreen({ navigation }) {
           placeholder="Password:"
           placeholderTextColor="#003f5c"
           secureTextEntry={true}
-          value={password}
           onChangeText={(pw) => setPassword(pw)}
         />
       </View>
@@ -127,7 +124,10 @@ export default function SignInSignUpScreen({ navigation }) {
       <View />
       <View>
         <View style={{ flexDirection: "row" }}>
-        <TouchableOpacity style={styles.button} onPress={ isLogIn ? login : signUp}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={isLogIn ? login : signUp}
+          >
             <Text style={styles.buttonText}>
               {" "}
               {isLogIn ? "Log In" : "Sign Up"}{" "}
@@ -144,9 +144,9 @@ export default function SignInSignUpScreen({ navigation }) {
       <TouchableOpacity
         onPress={() => {
           LayoutAnimation.configureNext({
-            duration: 700,
-            create: { type: 'linear', property: 'opacity' },
-            update: { type: 'spring', springDamping: 0.8 }
+            duration: 200,
+            create: { type: "linear", property: "opacity" },
+            update: { type: "spring", springDamping: 0.6 },
           });
           setIsLogIn(!isLogIn);
           setErrorText("");

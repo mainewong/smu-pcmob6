@@ -1,22 +1,27 @@
-import React, { useState } from "react";
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from "react-native";
 import axios from "axios";
+import React, { useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { useSelector } from "react-redux";
 import { API, API_CREATE } from "../constants/API";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { lightStyles, commonStyles } from "../styles/commonStyles";
+import { commonStyles, lightStyles } from "../styles/commonStyles";
 
 export default function CreateScreen({ navigation }) {
   const styles = { ...lightStyles, ...commonStyles };
+  const token = useSelector((state) => state.auth.token);
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-
   async function savePost() {
     const post = {
       title: title,
       content: content,
     };
-    const token = await AsyncStorage.getItem("token");
     try {
       console.log(token);
       const response = await axios.post(API + API_CREATE, post, {
