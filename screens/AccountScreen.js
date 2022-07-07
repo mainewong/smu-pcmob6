@@ -14,7 +14,7 @@ import { API, API_WHOAMI } from "../constants/API";
 import { commonStyles, darkStyles, lightStyles } from "../styles/commonStyles";
 import { lightModeAction, darkModeAction } from "../redux/ducks/accountPref";
 import { logOutAction } from "../redux/ducks/blogAuth";
-import { changeModeAction } from "../redux/ducks/accountPref";
+import { changeModeAction, deletePicAction } from "../redux/ducks/accountPref";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
 export default function AccountScreen({ navigation }) {
@@ -28,7 +28,7 @@ export default function AccountScreen({ navigation }) {
     (state) => state.accountPrefs.profilePicture
   );
 
-  const picSize = new Animated.Value(200);
+  const picSize = new Animated.Value(100);
 
   const dispatch = useDispatch();
 
@@ -73,7 +73,7 @@ export default function AccountScreen({ navigation }) {
     Animated.loop(
       Animated.sequence([
         Animated.spring(picSize, {
-          toValue: 300,
+          toValue: 200,
           duration: 2500,
           useNativeDriver: false
         }),
@@ -84,6 +84,7 @@ export default function AccountScreen({ navigation }) {
         })
     ]) 
     ).start()
+    
   }
 
   useEffect(() => {
@@ -100,7 +101,7 @@ export default function AccountScreen({ navigation }) {
 
   return (
     <View style={[styles.container, { alignItems: "center" }]}>
-      <Text style={[styles.title, styles.text, { marginTop: 30 }]}>
+      <Text style={[styles.title, styles.text, { margin: 30 }]}>
         {" "}
         Hello {username} !
       </Text>
@@ -118,8 +119,9 @@ export default function AccountScreen({ navigation }) {
       }
       <TouchableOpacity onPress={() => navigation.navigate("Camera")}>
         <Text style={{ marginTop: 10, fontSize: 20, color: "#0000EE" }}>
-          {" "}
-          No profile picture. Click to take one.{" "}
+          {profilePicture
+          ? "Delete this photo. Take another one."
+          : "No profile picture. Click to take one."} 
         </Text>
       </TouchableOpacity>
       <View

@@ -182,8 +182,8 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   inputView: {
-    backgroundColor: "#FFC0CB",
-    borderRadius: 30,
+    backgroundColor: "#e5e5e5",
+    borderRadius: 5,
     width: "70%",
     height: 45,
     marginBottom: 20,
@@ -196,12 +196,14 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: "blue",
-    borderRadius: 25,
+    borderRadius: 5,
+    width: 150,
+    alignItems: "center",
   },
   buttonText: {
     fontWeight: "400",
     fontSize: 20,
-    margin: 20,
+    margin: 15,
     color: "white",
   },
   errorText: {

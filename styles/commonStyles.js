@@ -3,7 +3,8 @@ export const commonStyles = {
     backgroundColor: '#2069e0',
     borderRadius: 15,
     width: "50%",
-    alignItems: "center"
+    alignItems: "center",
+    marginTop: 40,
   },
   buttonText: {
     fontWeight: '400',
