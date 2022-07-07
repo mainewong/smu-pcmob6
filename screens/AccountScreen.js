@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View,
   Image,
+  Animated,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { API, API_WHOAMI } from "../constants/API";
@@ -14,6 +15,7 @@ import { commonStyles, darkStyles, lightStyles } from "../styles/commonStyles";
 import { lightModeAction, darkModeAction } from "../redux/ducks/accountPref";
 import { logOutAction } from "../redux/ducks/blogAuth";
 import { changeModeAction } from "../redux/ducks/accountPref";
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
 export default function AccountScreen({ navigation }) {
   const [username, setUsername] = useState(null);
@@ -25,6 +27,8 @@ export default function AccountScreen({ navigation }) {
   const profilePicture = useSelector(
     (state) => state.accountPrefs.profilePicture
   );
+
+  const picSize = new Animated.Value(200);
 
   const dispatch = useDispatch();
 
@@ -64,6 +68,24 @@ export default function AccountScreen({ navigation }) {
     dispatch(changeModeAction());
   }
 
+  function changePicSize() {
+    //dispatch(isDark ? lightModeAction() : darkModeAction());
+    Animated.loop(
+      Animated.sequence([
+        Animated.spring(picSize, {
+          toValue: 300,
+          duration: 2500,
+          useNativeDriver: false
+        }),
+        Animated.timing(picSize, {
+          toValue: 200,
+          duration: 2500,
+          useNativeDriver: false
+        })
+    ]) 
+    ).start()
+  }
+
   useEffect(() => {
     console.log("Setting up nav listener");
     // Check for when we come back to this screen
@@ -82,10 +104,18 @@ export default function AccountScreen({ navigation }) {
         {" "}
         Hello {username} !
       </Text>
-      <Image
+      
+      {/* <Animated.Image
         source={{ uri: profilePicture }}
         style={{ width: 250, height: 250, borderRadius: 200 }}
-      />
+      /> */}
+
+      {profilePicture == null? <View/> :
+        <TouchableWithoutFeedback onPress={changePicSize}>
+          <Animated.Image style={{ width: picSize, height: picSize, borderRadius: 200 }}
+                          source={{ uri: profilePicture }} />
+        </TouchableWithoutFeedback>
+      }
       <TouchableOpacity onPress={() => navigation.navigate("Camera")}>
         <Text style={{ marginTop: 10, fontSize: 20, color: "#0000EE" }}>
           {" "}
