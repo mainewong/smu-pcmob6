@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   UIManager,
   View,
+  Platform
 } from "react-native";
 import { useDispatch } from "react-redux";
 import { API, API_LOGIN, API_SIGNUP } from "../constants/API";
