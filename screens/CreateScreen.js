@@ -11,6 +11,8 @@ import { useSelector } from "react-redux";
 import { API, API_CREATE } from "../constants/API";
 import { commonStyles, darkStyles, lightStyles } from "../styles/commonStyles";
 import SelectDropdown from "react-native-select-dropdown";
+import UploadImage from '../components/UploadImage';
+
 
 export default function CreateScreen({ navigation }) {
   const token = useSelector((state) => state.auth.token);
@@ -49,6 +51,7 @@ export default function CreateScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
+       <UploadImage/>
       <View style={{ margin: 20 }}>
         <Text style={[additionalStyles.label, styles.text]}>Shop</Text>
         <TextInput
