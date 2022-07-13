@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, Component } from "react";
 import {
   StyleSheet,
   Text,
@@ -10,7 +10,7 @@ import {
 import { useSelector } from "react-redux";
 import { API, API_CREATE } from "../constants/API";
 import { commonStyles, darkStyles, lightStyles } from "../styles/commonStyles";
-import { Dropdown } from 'react-native-material-dropdown-v2';
+import SelectDropdown from "react-native-select-dropdown";
 
 export default function CreateScreen({ navigation }) {
   const token = useSelector((state) => state.auth.token);
@@ -20,10 +20,10 @@ export default function CreateScreen({ navigation }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [comment, setComment] = useState("");
-  const [coffeeType, setCoffeeType] = useState("");
-  const [roast, setRoast] = useState("");
+  //const [coffeeType, setCoffeeType] = useState("");
+  const [coffeeType, setCoffeeType] = useState("Espresso");
+  const [roast, setRoast] = useState("Light");
   const [rating, setRating] = useState("");
-  
 
   async function savePost() {
     const post = {
@@ -34,6 +34,7 @@ export default function CreateScreen({ navigation }) {
       roast: roast,
       rating: rating,
     };
+
     try {
       console.log(token);
       const response = await axios.post(API + API_CREATE, post, {
@@ -55,46 +56,53 @@ export default function CreateScreen({ navigation }) {
           value={title}
           onChangeText={(text) => setTitle(text)}
         />
-        <Text style={[additionalStyles.label, styles.text]}>
-          Coffee
-        </Text>
+        <Text style={[additionalStyles.label, styles.text]}>Coffee</Text>
         <TextInput
           style={additionalStyles.input}
           value={content}
           onChangeText={(text) => setContent(text)}
         />
-        <Text style={[additionalStyles.label, styles.text]}>
-          Review
-        </Text>
+        <Text style={[additionalStyles.label, styles.text]}>Review</Text>
         <TextInput
           style={additionalStyles.input}
           value={comment}
           onChangeText={(text) => setComment(text)}
         />
-        <Text style={[additionalStyles.label, styles.text]}>
-          Type
-        </Text>
-        <TextInput
-          style={additionalStyles.input}
-          value={coffeeType}
-          onChangeText={(text) => setCoffeeType(text)}
+        <Text style={[additionalStyles.label, styles.text]}>Type</Text>
+        <SelectDropdown
+          data={["Espresso", "Filter", "Cold Brew"]}
+          onSelect={(selectedItem, index) => {
+            setCoffeeType(selectedItem)
+            console.log(selectedItem, index);
+          }}
+          buttonTextAfterSelection={(selectedItem, index) => {
+            return selectedItem;
+          }}
+          rowTextForSelection={(item, index) => {
+            return item;
+          }}
         />
-        <Text style={[additionalStyles.label, styles.text]}>
-          Roast
-        </Text>
-        <TextInput
-          style={additionalStyles.input}
-          value={roast}
-          onChangeText={(text) => setRoast(text)}
+        <Text style={[additionalStyles.label, styles.text]}>Roast</Text>
+        <SelectDropdown
+          data={["Light", "Medium", "Dark"]}
+          onSelect={(selectedItem, index) => {
+            setRoast(selectedItem)
+            console.log(selectedItem, index);
+          }}
+          buttonTextAfterSelection={(selectedItem, index) => {
+            return selectedItem;
+          }}
+          rowTextForSelection={(item, index) => {
+            return item;
+          }}
         />
-        <Text style={[additionalStyles.label, styles.text]}>
-          Ratings
-        </Text>
+        <Text style={[additionalStyles.label, styles.text]}>Ratings</Text>
         <TextInput
           style={additionalStyles.input}
           value={rating}
           onChangeText={(text) => setRating(text)}
         />
+        
         <TouchableOpacity
           style={[styles.button, { marginTop: 20 }]}
           onPress={savePost}

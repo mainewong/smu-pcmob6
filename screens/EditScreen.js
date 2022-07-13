@@ -4,6 +4,7 @@ import { API, API_POSTS } from "../constants/API";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { commonStyles, darkStyles, lightStyles } from "../styles/commonStyles";
+import SelectDropdown from "react-native-select-dropdown";
 
 export default function EditScreen({ navigation, route }) {
 
@@ -74,16 +75,32 @@ export default function EditScreen({ navigation, route }) {
           onChangeText={(text) => setComment(text)}
         />
         <Text style={[additionalStyles.label, styles.text]}>Type</Text>
-        <TextInput
-          style={additionalStyles.input}
-          value={coffeeType}
-          onChangeText={(text) => setCoffeeType(text)}
+        <SelectDropdown
+          data={["Espresso", "Filter", "Cold Brew"]}
+          onSelect={(selectedItem, index) => {
+            setCoffeeType(selectedItem)
+            console.log(selectedItem, index);
+          }}
+          buttonTextAfterSelection={(selectedItem, index) => {
+            return selectedItem;
+          }}
+          rowTextForSelection={(item, index) => {
+            return item;
+          }}
         />
         <Text style={[additionalStyles.label, styles.text]}>Roast</Text>
-        <TextInput
-          style={additionalStyles.input}
-          value={roast}
-          onChangeText={(text) => setRoast(text)}
+        <SelectDropdown
+          data={["Light", "Medium", "Dark"]}
+          onSelect={(selectedItem, index) => {
+            setRoast(selectedItem)
+            console.log(selectedItem, index);
+          }}
+          buttonTextAfterSelection={(selectedItem, index) => {
+            return selectedItem;
+          }}
+          rowTextForSelection={(item, index) => {
+            return item;
+          }}
         />
         <Text style={[additionalStyles.label, styles.text]}>Ratings</Text>
         <TextInput
