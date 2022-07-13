@@ -21,10 +21,10 @@ export default function BlogStack() {
 
   return (
     <InnerStack.Navigator>
-      <InnerStack.Screen name="Index" component={IndexScreen} options={{ title: "Blog", ...headerOptions, headerLeft: null }} />
-      <InnerStack.Screen name="Add" component={CreateScreen} options={{ title: "Add Post", ...headerOptions }} />
+      <InnerStack.Screen name="Index" component={IndexScreen} options={{ title: "Reviews", ...headerOptions, headerLeft: null }} />
+      <InnerStack.Screen name="Add" component={CreateScreen} options={{ title: "Add Review", ...headerOptions }} />
       <InnerStack.Screen name="Details" component={ShowScreen} options={headerOptions} />
-      <InnerStack.Screen name="Edit" component={EditScreen} options={{ title: "Edit Post", ...headerOptions }} />
+      <InnerStack.Screen name="Edit" component={EditScreen} options={{ title: "Edit Review", ...headerOptions }} />
     </InnerStack.Navigator>
   )
 }

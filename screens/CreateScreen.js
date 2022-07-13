@@ -10,6 +10,7 @@ import {
 import { useSelector } from "react-redux";
 import { API, API_CREATE } from "../constants/API";
 import { commonStyles, darkStyles, lightStyles } from "../styles/commonStyles";
+import { Dropdown } from 'react-native-material-dropdown-v2';
 
 export default function CreateScreen({ navigation }) {
   const token = useSelector((state) => state.auth.token);
@@ -18,10 +19,20 @@ export default function CreateScreen({ navigation }) {
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [comment, setComment] = useState("");
+  const [coffeeType, setCoffeeType] = useState("");
+  const [roast, setRoast] = useState("");
+  const [rating, setRating] = useState("");
+  
+
   async function savePost() {
     const post = {
       title: title,
       content: content,
+      comment: comment,
+      coffeeType: coffeeType,
+      roast: roast,
+      rating: rating,
     };
     try {
       console.log(token);
@@ -38,19 +49,51 @@ export default function CreateScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={{ margin: 20 }}>
-        <Text style={[additionalStyles.label, styles.text]}>Enter Title:</Text>
+        <Text style={[additionalStyles.label, styles.text]}>Shop</Text>
         <TextInput
           style={additionalStyles.input}
           value={title}
           onChangeText={(text) => setTitle(text)}
         />
         <Text style={[additionalStyles.label, styles.text]}>
-          Enter Content:
+          Coffee
         </Text>
         <TextInput
           style={additionalStyles.input}
           value={content}
           onChangeText={(text) => setContent(text)}
+        />
+        <Text style={[additionalStyles.label, styles.text]}>
+          Review
+        </Text>
+        <TextInput
+          style={additionalStyles.input}
+          value={comment}
+          onChangeText={(text) => setComment(text)}
+        />
+        <Text style={[additionalStyles.label, styles.text]}>
+          Type
+        </Text>
+        <TextInput
+          style={additionalStyles.input}
+          value={coffeeType}
+          onChangeText={(text) => setCoffeeType(text)}
+        />
+        <Text style={[additionalStyles.label, styles.text]}>
+          Roast
+        </Text>
+        <TextInput
+          style={additionalStyles.input}
+          value={roast}
+          onChangeText={(text) => setRoast(text)}
+        />
+        <Text style={[additionalStyles.label, styles.text]}>
+          Ratings
+        </Text>
+        <TextInput
+          style={additionalStyles.input}
+          value={rating}
+          onChangeText={(text) => setRating(text)}
         />
         <TouchableOpacity
           style={[styles.button, { marginTop: 20 }]}

@@ -13,17 +13,29 @@ export default function EditScreen({ navigation, route }) {
   
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [comment, setComment] = useState("");
+  const [coffeeType, setCoffeeType] = useState("");
+  const [roast, setRoast] = useState("");
+  const [rating, setRating] = useState("");
 
   useEffect(() => {
     const post = route.params.post
     setTitle(post.title);
     setContent(post.content);
+    setComment(post.comment);
+    setCoffeeType(post.coffeeType);
+    setRoast(post.roast);
+    setRating(post.rating);
   }, [])
 
   async function editPost() {
     const post = {
       "title": title,
       "content": content,
+      "comment": comment,
+      "coffeeType": coffeeType,
+      "roast": roast,
+      "rating": rating,
     }
 
     const id = route.params.post.id
@@ -43,17 +55,41 @@ export default function EditScreen({ navigation, route }) {
   return (
     <View style={styles.container}>
       <View style={{ margin: 20 }}>
-        <Text style={[additionalStyles.label, styles.text]}>Enter Title:</Text>
+        <Text style={[additionalStyles.label, styles.text]}>Shop</Text>
         <TextInput
           style={additionalStyles.input}
           value={title}
           onChangeText={text => setTitle(text)}
         />
-        <Text style={[additionalStyles.label, styles.text]}>Enter Content:</Text>
+        <Text style={[additionalStyles.label, styles.text]}>Coffee</Text>
         <TextInput
           style={additionalStyles.input}
           value={content}
           onChangeText={text => setContent(text)}
+        />
+         <Text style={[additionalStyles.label, styles.text]}>Review</Text>
+        <TextInput
+          style={additionalStyles.input}
+          value={comment}
+          onChangeText={(text) => setComment(text)}
+        />
+        <Text style={[additionalStyles.label, styles.text]}>Type</Text>
+        <TextInput
+          style={additionalStyles.input}
+          value={coffeeType}
+          onChangeText={(text) => setCoffeeType(text)}
+        />
+        <Text style={[additionalStyles.label, styles.text]}>Roast</Text>
+        <TextInput
+          style={additionalStyles.input}
+          value={roast}
+          onChangeText={(text) => setRoast(text)}
+        />
+        <Text style={[additionalStyles.label, styles.text]}>Ratings</Text>
+        <TextInput
+          style={additionalStyles.input}
+          value={rating}
+          onChangeText={(text) => setRating(text)}
         />
       <TouchableOpacity style={[styles.button, {marginTop: 20}]} onPress={editPost}>
         <Text style={styles.buttonText}>

@@ -59,6 +59,18 @@ export default function ShowScreen({ navigation, route }) {
       <Text style={[styles.title, styles.text, { margin: 20 }]}>
         {post.content}
       </Text>
+      <Text style={[styles.title, styles.text, { margin: 20 }]}>
+        {post.comment}
+      </Text>
+      <Text style={[styles.title, styles.text, { margin: 20 }]}>
+        {post.coffeeType}
+      </Text>
+      <Text style={[styles.title, styles.text, { margin: 20 }]}>
+        {post.roast}
+      </Text>
+      <Text style={[styles.title, styles.text, { margin: 20 }]}>
+        {post.rating}
+      </Text>
     </View>
   );
 }
