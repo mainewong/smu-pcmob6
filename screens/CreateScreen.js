@@ -69,7 +69,7 @@ export default function CreateScreen({ navigation }) {
         />
         <Text style={[additionalStyles.label, styles.text]}>Review</Text>
         <TextInput
-          style={additionalStyles.input}
+          style={additionalStyles.inputPara}
           value={comment}
           onChangeText={(text) => setComment(text)}
         />
@@ -125,6 +125,14 @@ const additionalStyles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "black",
     marginBottom: 15,
+    height: 32,
+  },
+  inputPara: {
+    fontSize: 24,
+    borderWidth: 1,
+    borderColor: "black",
+    marginBottom: 15,
+    height: 80,
   },
   label: {
     fontSize: 28,

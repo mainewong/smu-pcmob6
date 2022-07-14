@@ -97,15 +97,15 @@ export default function IndexScreen({ navigation, route }) {
             padding: 10,
             paddingTop: 20,
             paddingBottom: 20,
-            borderBottomColor: "#ccc",
+            borderBottomColor: "#D6C6B8",
             borderBottomWidth: 1,
             flexDirection: "row",
             justifyContent: "space-between",
           }}
         >
-          <Image style={{ width: 100, height: 100 }}
+          <Image style={{ width: 100, height: 100, borderRadius: 100, }}
                           source={{ uri: item.image }} />
-          <Text style={styles.text}>{item.title}</Text>
+          <Text style={styles.headerTitle}>{item.title}</Text>
           <TouchableOpacity onPress={() => deletePost(item.id)}>
             <FontAwesome name="trash" size={20} color="#a80000" />
           </TouchableOpacity>

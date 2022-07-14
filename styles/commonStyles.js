@@ -1,6 +1,6 @@
 export const commonStyles = {
   button: {
-    backgroundColor: '#2069e0',
+    backgroundColor: '#3F5362',
     borderRadius: 15,
     width: "50%",
     alignItems: "center",
@@ -15,33 +15,33 @@ export const commonStyles = {
   title: {
     fontWeight: "bold",
     fontSize: 30, 
-    textAlign: 'center',
+    //textAlign: 'center',
   },
   content: {
     fontWeight: '400',
     fontSize: 24,
-  },
+  }
 }
 
 export const lightStyles = {
   container: {
     flex: 1,
-    backgroundColor: "#ffc",
+    backgroundColor: "#E5DAD0",
   },
   text: {
-    color: "black",
+    color: "#3F5362",
   },
   header: {
-    backgroundColor: "yellow",
+    backgroundColor: "#E5DAD0",
     height: 100,
     shadowColor: "black",
     shadowOpacity: 0.2,
     shadowRadius: 5,
   },
   headerTitle: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: "bold",
-    color: "#f55"
+    color: "#3F5362",
   },
   headerTint: "#f55"
 };
