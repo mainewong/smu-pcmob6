@@ -9,8 +9,12 @@ import {
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
+import { uploadImgAction } from "../redux/ducks/uploadImg";
+import { useDispatch } from "react-redux";
 
 export default function UploadImage() {
+  const dispatch = useDispatch();
+
   const [image, setImage] = useState(null);
 
   const addImage = async () => {
@@ -25,6 +29,7 @@ export default function UploadImage() {
 
     if (!_image.cancelled) {
       setImage(_image.uri);
+      dispatch({...uploadImgAction(), payload: _image.uri})
     }
   };
 
@@ -60,6 +65,7 @@ export default function UploadImage() {
       </View>
     </View>
   );
+
 }
 
 const imageUploaderStyles = StyleSheet.create({

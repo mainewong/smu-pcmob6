@@ -1,7 +1,7 @@
 import { FontAwesome } from "@expo/vector-icons";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View, Image, ScrollView } from "react-native";
 import { useSelector } from "react-redux";
 import { API, API_POSTS } from "../constants/API";
 import { commonStyles, lightStyles, darkStyles } from "../styles/commonStyles";
@@ -52,7 +52,12 @@ export default function ShowScreen({ navigation, route }) {
   }
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
+      <Image style={{ width: 200, height: 200, margin: 40 }}
+                          source={{ uri: post.image }} />
+      <Text style={[styles.title, styles.text, { margin: 40 }]}>
+        {post.title}
+      </Text>
       <Text style={[styles.title, styles.text, { margin: 40 }]}>
         {post.title}
       </Text>
@@ -71,6 +76,6 @@ export default function ShowScreen({ navigation, route }) {
       <Text style={[styles.title, styles.text, { margin: 20 }]}>
         {post.rating}
       </Text>
-    </View>
+    </ScrollView>
   );
 }

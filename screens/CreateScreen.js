@@ -6,23 +6,24 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  ScrollView,
 } from "react-native";
 import { useSelector } from "react-redux";
 import { API, API_CREATE } from "../constants/API";
 import { commonStyles, darkStyles, lightStyles } from "../styles/commonStyles";
 import SelectDropdown from "react-native-select-dropdown";
 import UploadImage from '../components/UploadImage';
-
+import { uploadImgAction } from "../redux/ducks/uploadImg";
 
 export default function CreateScreen({ navigation }) {
   const token = useSelector((state) => state.auth.token);
   const isDark = useSelector((state) => state.accountPrefs.isDark);
+  const uploadImg = useSelector((state) => state.image.image);
   const styles = { ...commonStyles, ...(isDark ? darkStyles : lightStyles) };
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [comment, setComment] = useState("");
-  //const [coffeeType, setCoffeeType] = useState("");
   const [coffeeType, setCoffeeType] = useState("Espresso");
   const [roast, setRoast] = useState("Light");
   const [rating, setRating] = useState("");
@@ -35,6 +36,7 @@ export default function CreateScreen({ navigation }) {
       coffeeType: coffeeType,
       roast: roast,
       rating: rating,
+      image: uploadImg,
     };
 
     try {
@@ -50,7 +52,7 @@ export default function CreateScreen({ navigation }) {
   }
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
        <UploadImage/>
       <View style={{ margin: 20 }}>
         <Text style={[additionalStyles.label, styles.text]}>Shop</Text>
@@ -113,7 +115,7 @@ export default function CreateScreen({ navigation }) {
           <Text style={styles.buttonText}>Save</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
