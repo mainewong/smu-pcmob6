@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, ScrollView } from "react-native";
 import { API, API_POSTS } from "../constants/API";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { commonStyles, darkStyles, lightStyles } from "../styles/commonStyles";
 import SelectDropdown from "react-native-select-dropdown";
+import UploadImage from '../components/UploadImage';
 
 export default function EditScreen({ navigation, route }) {
 
   const token = useSelector((state) => state.auth.token);
   const isDark = useSelector((state) => state.accountPrefs.isDark);
+  const uploadImg = useSelector((state) => state.image.image);
+
   const styles = { ...commonStyles, ...(isDark ? darkStyles : lightStyles) };
   
   const [title, setTitle] = useState("");
@@ -37,6 +40,7 @@ export default function EditScreen({ navigation, route }) {
       "coffeeType": coffeeType,
       "roast": roast,
       "rating": rating,
+      "image": uploadImg,
     }
 
     const id = route.params.post.id
@@ -54,7 +58,8 @@ export default function EditScreen({ navigation, route }) {
   }
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
+       <UploadImage/>
       <View style={{ margin: 20 }}>
         <Text style={[additionalStyles.label, styles.text]}>Shop</Text>
         <TextInput
@@ -114,7 +119,7 @@ export default function EditScreen({ navigation, route }) {
         </Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 

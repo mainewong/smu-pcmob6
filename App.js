@@ -21,7 +21,7 @@ function App() {
         initialRouteName={token != null ? "Logged In" : "SignInSignUp"}
         animationEnabled={false}
         screenOptions={{
-          headerShown: false,
+          headerShown: true,
           headerMode: "none",
         }}
       >

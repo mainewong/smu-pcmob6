@@ -58,9 +58,6 @@ export default function ShowScreen({ navigation, route }) {
       <Text style={[styles.title, styles.text, { margin: 40 }]}>
         {post.title}
       </Text>
-      <Text style={[styles.title, styles.text, { margin: 40 }]}>
-        {post.title}
-      </Text>
       <Text style={[styles.title, styles.text, { margin: 20 }]}>
         {post.content}
       </Text>

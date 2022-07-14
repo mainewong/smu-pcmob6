@@ -30,7 +30,8 @@ export default function LoggedInStack() {
         tabStyle: {
           backgroundColor: isDark ? "#181818" : "white",
         }
-      }}>
+      }}
+      >
         <Tab.Screen name="Blog" component={BlogStack} />
         <Tab.Screen name="Settings" component={AccountStack} />
     </Tab.Navigator>
