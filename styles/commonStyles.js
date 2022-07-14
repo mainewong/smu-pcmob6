@@ -1,10 +1,12 @@
 export const commonStyles = {
   button: {
     backgroundColor: '#3F5362',
-    borderRadius: 15,
+    borderRadius: 2,
     width: "50%",
+    height: 45,
     alignItems: "center",
     marginTop: 40,
+    paddingTop: 3,
   },
   buttonText: {
     fontWeight: '400',
@@ -17,10 +19,7 @@ export const commonStyles = {
     fontSize: 30, 
     //textAlign: 'center',
   },
-  content: {
-    fontWeight: '400',
-    fontSize: 24,
-  }
+  
 }
 
 export const lightStyles = {
@@ -43,19 +42,26 @@ export const lightStyles = {
     fontWeight: "bold",
     color: "#3F5362",
   },
-  headerTint: "#f55"
+  headerTint: {
+    color: "#3F5362",
+  },
+  content: {
+    fontWeight: '400',
+    fontSize: 22,
+    color: "#3F5362",
+  }
 };
 
 export const darkStyles = {
   container: {
     flex: 1,
-    backgroundColor: "#878683",
+    backgroundColor: "#615D52",
   },
   text: {
-    color: "white",
+    color: "#FFF4D7",
   },
   header: {
-    backgroundColor: "#444444",
+    backgroundColor: "#413D32",
     height: 100,
     shadowColor: "black",
     shadowOpacity: 0.2,
@@ -64,7 +70,14 @@ export const darkStyles = {
   headerTitle: {
     fontSize: 24,
     fontWeight: "bold",
-    color: "#f4d47c"
+    color: "#FFF4D7",
   },
-  headerTint: "#f4d47c"
+  headerTint: {
+    color: "#FFF4D7",
+  },
+  content: {
+    fontWeight: '400',
+    fontSize: 22,
+    color: "#FFF4D7",
+  }
 }

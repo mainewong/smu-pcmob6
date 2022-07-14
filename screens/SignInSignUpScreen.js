@@ -10,11 +10,14 @@ import {
   TouchableOpacity,
   UIManager,
   View,
-  Platform
+  Platform,
+  Image,
+  ScrollView
 } from "react-native";
 import { useDispatch } from "react-redux";
 import { API, API_LOGIN, API_SIGNUP } from "../constants/API";
 import { logInAction } from "../redux/ducks/blogAuth";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 if (
   Platform.OS === "android" &&
@@ -22,6 +25,7 @@ if (
 ) {
   UIManager.setLayoutAnimationEnabledExperimental(true);
 } //Needs to be manually enabled for android
+
 
 export default function SignInSignUpScreen({ navigation }) {
   const [username, setUsername] = useState("");
@@ -87,7 +91,15 @@ export default function SignInSignUpScreen({ navigation }) {
   }
 
   return (
-    <View style={styles.container}>
+    
+    <KeyboardAwareScrollView contentContainerStyle={styles.container}>
+       
+       <Image
+        style={styles.logo}
+        source={{
+          uri: 'https://i.ibb.co/B4Xp8zb/rm381-17a.png',
+        }}
+      />
       <Text style={styles.title}>{isLogIn ? "Log In" : "Sign Up"}</Text>
       <View style={styles.inputView}>
         <TextInput
@@ -160,30 +172,35 @@ export default function SignInSignUpScreen({ navigation }) {
             : "Already have an account? Log in here."}
         </Text>
       </TouchableOpacity>
-    </View>
+    </KeyboardAwareScrollView>
+   
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#E5DAD0",
     alignItems: "center",
     justifyContent: "center",
   },
   title: {
-    fontWeight: "bold",
-    fontSize: 40,
+    fontWeight: "normal",
+    fontSize: 30,
     margin: 20,
+    color: "#3F5362",
   },
   switchText: {
     fontWeight: "400",
     fontSize: 20,
     marginTop: 20,
+    color: "#3F5362",
   },
   inputView: {
     backgroundColor: "#e5e5e5",
-    borderRadius: 5,
+    borderColor: "#D6C6B8",
+    borderWidth: 1,
+    borderRadius: 2,
     width: "70%",
     height: 45,
     marginBottom: 20,
@@ -195,8 +212,8 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   button: {
-    backgroundColor: "blue",
-    borderRadius: 5,
+    backgroundColor: "#3F5362",
+    borderRadius: 2,
     width: 150,
     alignItems: "center",
   },
@@ -208,7 +225,12 @@ const styles = StyleSheet.create({
   },
   errorText: {
     fontSize: 15,
-    color: "red",
+    color: "tomato",
     marginTop: 20,
+  },
+  logo: {
+    justifyContent: "center",
+    width: 200,
+    height: 200,
   },
 });

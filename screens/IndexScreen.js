@@ -101,13 +101,17 @@ export default function IndexScreen({ navigation, route }) {
             borderBottomWidth: 1,
             flexDirection: "row",
             justifyContent: "space-between",
+            alignItems: "center",
           }}
         >
           <Image style={{ width: 100, height: 100, borderRadius: 100, }}
                           source={{ uri: item.image }} />
           <Text style={styles.headerTitle}>{item.title}</Text>
+          <Text style={styles.text}>
+        {item.rating}/5
+      </Text>
           <TouchableOpacity onPress={() => deletePost(item.id)}>
-            <FontAwesome name="trash" size={20} color="#a80000" />
+            <FontAwesome name="trash" size={20} color="#3F5362" />
           </TouchableOpacity>
         </View>
       </TouchableOpacity>

@@ -28,7 +28,7 @@ export default function AccountScreen({ navigation }) {
     (state) => state.accountPrefs.profilePicture
   );
 
-  const picSize = new Animated.Value(100);
+  const picSize = new Animated.Value(200);
 
   const dispatch = useDispatch();
 
@@ -118,7 +118,7 @@ export default function AccountScreen({ navigation }) {
         </TouchableWithoutFeedback>
       }
       <TouchableOpacity onPress={() => navigation.navigate("Camera")}>
-        <Text style={{ marginTop: 10, fontSize: 20, color: "#0000EE" }}>
+        <Text style={[styles.content, {marginTop: 30}]} >
           {profilePicture
           ? "Delete this photo. Take another one."
           : "No profile picture. Click to take one."} 

@@ -15,25 +15,25 @@ export default function LoggedInStack() {
         tabBarIcon: ({ color, size }) => {
           let iconName;
 
-          if (route.name === 'Blog') {
+          if (route.name === 'Reviews') {
             iconName = "comments"
-          } else if (route.name === 'Settings') {
-            iconName = "cog"
+          } else if (route.name === 'Profile') {
+            iconName = "user"
           }
           // You can return any component that you like here!
           return <FontAwesome name={iconName} size={size} color={color} />;
         },
       })}
       tabBarOptions={{
-        activeTintColor: 'tomato',
-        inactiveTintColor: 'gray',
+        activeTintColor: '#3F5362',
+        inactiveTintColor: '#D6C6B8',
         tabStyle: {
           backgroundColor: isDark ? "#181818" : "white",
         }
       }}
       >
-        <Tab.Screen name="Blog" component={BlogStack} />
-        <Tab.Screen name="Settings" component={AccountStack} />
+        <Tab.Screen name="Reviews" component={BlogStack} />
+        <Tab.Screen name="Profile" component={AccountStack} />
     </Tab.Navigator>
   )
 }

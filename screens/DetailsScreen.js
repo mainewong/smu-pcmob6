@@ -56,10 +56,7 @@ export default function ShowScreen({ navigation, route }) {
       <Text style={[additionalStyles.header, styles.text]}>
         {post.title}
       </Text>
-      <Text style={[additionalStyles.input, styles.text]}>
-        {post.rating}/5
-      </Text>
-      <Image style={{ width: 350, height: 350, alignSelf: "center" }}
+      <Image style={{ width: 350, height: 350, alignSelf: "center", borderRadius: 10 }}
              source={{ uri: post.image }} />
       <Text style={[additionalStyles.header, styles.text]}>
         {post.content}
@@ -67,14 +64,44 @@ export default function ShowScreen({ navigation, route }) {
       <Text style={[additionalStyles.paragraph, styles.text]}>
         {post.comment}
       </Text>
-      <Text style={[additionalStyles.label, styles.text]}>Type</Text>
-      <Text style={[additionalStyles.input, styles.text]}>
-        {post.coffeeType}
-      </Text>
-      <Text style={[additionalStyles.label, styles.text]}>Roast</Text>
-      <Text style={[additionalStyles.input, styles.text]}>
-        {post.roast}
-      </Text>
+      <View style={{ flexDirection: "row" }}>
+        <View style={{ justifyContent:"flex-start", marginRight: 30 }}>
+          <FontAwesome
+            name="coffee"
+            size={20}
+            color={"#3F5362"}
+            style={{ marginLeft: 20, marginTop: 15 }}
+          />
+          <Text style={[additionalStyles.label, styles.text]}>Type</Text>
+          <Text style={[additionalStyles.input, styles.text]}>
+            {post.coffeeType}
+          </Text>
+        </View>
+        <View style={{ justifyContent:"flex-end", marginRight: 30 }}>
+        <FontAwesome
+            name="fire"
+            size={20}
+            color={"#3F5362"}
+            style={{ marginLeft: 20, marginTop: 15 }}
+          />
+          <Text style={[additionalStyles.label, styles.text]}>Roast</Text>
+          <Text style={[additionalStyles.input, styles.text]}>
+          {post.roast}
+          </Text>
+        </View>
+        <View style={{ justifyContent:"flex-end" }}>
+        <FontAwesome
+            name="star"
+            size={20}
+            color={"#3F5362"}
+            style={{ marginLeft: 20, marginTop: 15 }}
+          />
+          <Text style={[additionalStyles.label, styles.text]}>Rating</Text>
+          <Text style={[additionalStyles.input, styles.text]}>
+            {post.rating}/5
+          </Text>
+        </View>
+      </View>
       
     </ScrollView>
   );
@@ -96,7 +123,7 @@ const additionalStyles = StyleSheet.create({
   },
   label: {
     fontSize: 20,
-    marginTop: 20,
+    marginTop: 5,
     marginLeft: 20,
     fontWeight: "bold",
     

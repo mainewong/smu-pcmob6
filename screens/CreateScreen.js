@@ -14,6 +14,7 @@ import { commonStyles, darkStyles, lightStyles } from "../styles/commonStyles";
 import SelectDropdown from "react-native-select-dropdown";
 import UploadImage from '../components/UploadImage';
 import { uploadImgAction } from "../redux/ducks/uploadImg";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export default function CreateScreen({ navigation }) {
   const token = useSelector((state) => state.auth.token);
@@ -52,7 +53,7 @@ export default function CreateScreen({ navigation }) {
   }
 
   return (
-    <ScrollView style={styles.container}>
+    <KeyboardAwareScrollView style={styles.container}>
        <UploadImage/>
       <View style={{ margin: 20 }}>
         <Text style={[additionalStyles.label, styles.text]}>Shop</Text>
@@ -69,7 +70,7 @@ export default function CreateScreen({ navigation }) {
         />
         <Text style={[additionalStyles.label, styles.text]}>Review</Text>
         <TextInput
-          style={additionalStyles.inputPara}
+          style={additionalStyles.input}
           value={comment}
           onChangeText={(text) => setComment(text)}
         />
@@ -102,12 +103,14 @@ export default function CreateScreen({ navigation }) {
           }}
         />
         <Text style={[additionalStyles.label, styles.text]}>Ratings</Text>
+        <View
+        style={{flexDirection:'row',}}>
         <TextInput
-          style={additionalStyles.input}
+          style={[additionalStyles.input, {width: 196, justifyContent:"flex-start"}]}
           value={rating}
           onChangeText={(text) => setRating(text)}
-        />
-        
+        /><Text style={[additionalStyles.label, styles.text, {justifyContent:"flex-end"} ]}>/5</Text>
+        </View>
         <TouchableOpacity
           style={[styles.button, { marginTop: 20 }]}
           onPress={savePost}
@@ -115,28 +118,27 @@ export default function CreateScreen({ navigation }) {
           <Text style={styles.buttonText}>Save</Text>
         </TouchableOpacity>
       </View>
-    </ScrollView>
+    </KeyboardAwareScrollView>
   );
 }
 
 const additionalStyles = StyleSheet.create({
   input: {
     fontSize: 24,
+    backgroundColor: "#e5e5e5",
+    borderColor: "#D6C6B8",
     borderWidth: 1,
-    borderColor: "black",
-    marginBottom: 15,
-    height: 32,
-  },
-  inputPara: {
-    fontSize: 24,
-    borderWidth: 1,
-    borderColor: "black",
-    marginBottom: 15,
-    height: 80,
+    borderRadius: 2,
+    marginBottom: 0,
+    height: 40,
   },
   label: {
-    fontSize: 28,
-    marginBottom: 10,
+    fontSize: 22,
+    marginBottom: 5,
     marginLeft: 5,
+    marginTop: 10,
   },
+  dropDown: {
+    marginBottom: 10,
+  }
 });
