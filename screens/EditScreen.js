@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { commonStyles, darkStyles, lightStyles } from "../styles/commonStyles";
 import SelectDropdown from "react-native-select-dropdown";
 import UploadImage from '../components/UploadImage';
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export default function EditScreen({ navigation, route }) {
 
@@ -58,7 +59,7 @@ export default function EditScreen({ navigation, route }) {
   }
 
   return (
-    <ScrollView style={styles.container}>
+    <KeyboardAwareScrollView style={styles.container}>
        <UploadImage/>
       <View style={{ margin: 20 }}>
         <Text style={[additionalStyles.label, styles.text]}>Shop</Text>
@@ -108,31 +109,48 @@ export default function EditScreen({ navigation, route }) {
           }}
         />
         <Text style={[additionalStyles.label, styles.text]}>Ratings</Text>
-        <TextInput
+        <View
+        style={{flexDirection:'row',}}>
+          <TextInput
+            style={[additionalStyles.input, {width: 196, justifyContent:"flex-start"}]}
+            value={rating}
+            onChangeText={(text) => setRating(text)}
+          /><Text style={[additionalStyles.label, styles.text, {justifyContent:"flex-end"} ]}>/5</Text>
+        </View>
+        {/* <TextInput
           style={additionalStyles.input}
           value={rating}
           onChangeText={(text) => setRating(text)}
-        />
+        /> */}
       <TouchableOpacity style={[styles.button, {marginTop: 20}]} onPress={editPost}>
         <Text style={styles.buttonText}>
           Save
         </Text>
         </TouchableOpacity>
       </View>
-    </ScrollView>
+    </KeyboardAwareScrollView>
   );
 }
 
 const additionalStyles = StyleSheet.create({
   input: {
-    fontSize: 24,
+    fontSize: 20,
+    backgroundColor: "#e5e5e5",
+    borderColor: "#D6C6B8",
     borderWidth: 1,
-    borderColor: "black",
-    marginBottom: 15,
+    borderRadius: 2,
+    marginBottom: 0,
+    height: 40,
+    paddingLeft: 10,
+    color: "#3F5362",
   },
   label: {
-    fontSize: 28,
+    fontSize: 22,
+    marginBottom: 5,
+    marginLeft: 5,
+    marginTop: 10,
+  },
+  dropDown: {
     marginBottom: 10,
-    marginLeft: 5
   }
 });

@@ -101,10 +101,6 @@ export default function AccountScreen({ navigation }) {
 
   return (
     <View style={[styles.container, { alignItems: "center" }]}>
-      <Text style={[styles.title, styles.text, { margin: 30 }]}>
-        {" "}
-        Hello {username} !
-      </Text>
       
       {/* <Animated.Image
         source={{ uri: profilePicture }}
@@ -113,17 +109,21 @@ export default function AccountScreen({ navigation }) {
 
       {profilePicture == null? <View/> :
         <TouchableWithoutFeedback onPress={changePicSize}>
-          <Animated.Image style={{ width: picSize, height: picSize, borderRadius: 200 }}
+          <Animated.Image style={{ width: picSize, height: picSize, borderRadius: 200, marginTop: 65}}
                           source={{ uri: profilePicture }} />
         </TouchableWithoutFeedback>
       }
       <TouchableOpacity onPress={() => navigation.navigate("Camera")}>
-        <Text style={[styles.content, {marginTop: 30}]} >
+        <Text style={[styles.content, {marginTop: 30, fontSize: 18 }]} >
           {profilePicture
           ? "Delete this photo. Take another one."
           : "No profile picture. Click to take one."} 
         </Text>
       </TouchableOpacity>
+      <Text style={[styles.detailsTitle, { margin: 30, fontSize: 40 }]}>
+        {" "}
+        Hello {username}!
+      </Text>
       <View
         style={{
           flexDirection: "row",

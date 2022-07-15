@@ -27,8 +27,8 @@ export default function IndexScreen({ navigation, route }) {
         <TouchableOpacity onPress={addPost}>
           <FontAwesome
             name="plus"
-            size={24}
-            style={{ color: styles.headerTint, marginRight: 15 }}
+            size={20}
+            style={[styles.icon, { marginRight: 25 }]}
           />
         </TouchableOpacity>
       ),
@@ -99,20 +99,35 @@ export default function IndexScreen({ navigation, route }) {
             paddingBottom: 20,
             borderBottomColor: "#D6C6B8",
             borderBottomWidth: 1,
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
+            alignItems: 'center',
+            //justifyContent: 'flex-start',
+            flexDirection: 'row',
+            flexWrap: 'wrap',        
+            marginHorizontal: 15,
           }}
         >
-          <Image style={{ width: 100, height: 100, borderRadius: 100, }}
-                          source={{ uri: item.image }} />
-          <Text style={styles.headerTitle}>{item.title}</Text>
-          <Text style={styles.text}>
-        {item.rating}/5
-      </Text>
-          <TouchableOpacity onPress={() => deletePost(item.id)}>
-            <FontAwesome name="trash" size={20} color="#3F5362" />
-          </TouchableOpacity>
+           <View style= {{ width: "28%"}}>
+            <Image
+              style={{ width: 100, height: 100, borderRadius: 100 }}
+              source={{ uri: item.image }}
+            />
+          </View>
+          <View style= {{ marginHorizontal: 25 , width: "57%"}}>
+            <Text style={styles.headerTitle}>{item.title}</Text>
+            <View style={{flexDirection:"row", width: "15%"}}>
+              <FontAwesome
+              name="star"
+              size={18}
+              style={[styles.icon, { marginTop: 11, marginRight: 5 }]}
+              />
+              <Text style={[styles.text, {marginTop: 11, fontSize: 18 }]}>{item.rating}/5</Text>
+            </View>
+          </View>
+          <View>
+            <TouchableOpacity onPress={() => deletePost(item.id)}>
+              <FontAwesome style={[styles.icon, { position: 'absolute', right: 0 }]} name="trash" size={20} />
+            </TouchableOpacity>
+          </View>
         </View>
       </TouchableOpacity>
     );

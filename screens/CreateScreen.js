@@ -105,11 +105,11 @@ export default function CreateScreen({ navigation }) {
         <Text style={[additionalStyles.label, styles.text]}>Ratings</Text>
         <View
         style={{flexDirection:'row',}}>
-        <TextInput
-          style={[additionalStyles.input, {width: 196, justifyContent:"flex-start"}]}
-          value={rating}
-          onChangeText={(text) => setRating(text)}
-        /><Text style={[additionalStyles.label, styles.text, {justifyContent:"flex-end"} ]}>/5</Text>
+          <TextInput
+            style={[additionalStyles.input, {width: 196, justifyContent:"flex-start"}]}
+            value={rating}
+            onChangeText={(text) => setRating(text)}
+          /><Text style={[additionalStyles.label, styles.text, {justifyContent:"flex-end"} ]}>/5</Text>
         </View>
         <TouchableOpacity
           style={[styles.button, { marginTop: 20 }]}
@@ -124,13 +124,15 @@ export default function CreateScreen({ navigation }) {
 
 const additionalStyles = StyleSheet.create({
   input: {
-    fontSize: 24,
+    fontSize: 20,
     backgroundColor: "#e5e5e5",
     borderColor: "#D6C6B8",
     borderWidth: 1,
     borderRadius: 2,
     marginBottom: 0,
     height: 40,
+    paddingLeft: 10,
+    color: "#3F5362",
   },
   label: {
     fontSize: 22,

@@ -15,11 +15,11 @@ export default function ShowScreen({ navigation, route }) {
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <TouchableOpacity onPress={editPost} style={{ marginRight: 10 }}>
+        <TouchableOpacity onPress={editPost} style={{ marginRight: 20 }}>
           <FontAwesome
-            name="pencil-square-o"
-            size={30}
-            color={styles.headerTint}
+            name="pencil"
+            size={25}
+            style={styles.icon}
           />
         </TouchableOpacity>
       ),
@@ -53,12 +53,12 @@ export default function ShowScreen({ navigation, route }) {
 
   return (
     <ScrollView style={styles.container}>
-      <Text style={[additionalStyles.header, styles.text]}>
+      <Text style={styles.detailsTitle}>
         {post.title}
       </Text>
       <Image style={{ width: 350, height: 350, alignSelf: "center", borderRadius: 10 }}
              source={{ uri: post.image }} />
-      <Text style={[additionalStyles.header, styles.text]}>
+      <Text style={styles.itemTitle}>
         {post.content}
       </Text>
       <Text style={[additionalStyles.paragraph, styles.text]}>
@@ -69,8 +69,7 @@ export default function ShowScreen({ navigation, route }) {
           <FontAwesome
             name="coffee"
             size={20}
-            color={"#3F5362"}
-            style={{ marginLeft: 20, marginTop: 15 }}
+            style={[styles.icon, { marginLeft: 20, marginTop: 15 }]}
           />
           <Text style={[additionalStyles.label, styles.text]}>Type</Text>
           <Text style={[additionalStyles.input, styles.text]}>
@@ -81,8 +80,8 @@ export default function ShowScreen({ navigation, route }) {
         <FontAwesome
             name="fire"
             size={20}
-            color={"#3F5362"}
-            style={{ marginLeft: 20, marginTop: 15 }}
+            //color={"#3F5362"}
+            style={[styles.icon, { marginLeft: 20, marginTop: 15 }]}
           />
           <Text style={[additionalStyles.label, styles.text]}>Roast</Text>
           <Text style={[additionalStyles.input, styles.text]}>
@@ -93,9 +92,8 @@ export default function ShowScreen({ navigation, route }) {
         <FontAwesome
             name="star"
             size={20}
-            color={"#3F5362"}
-            style={{ marginLeft: 20, marginTop: 15 }}
-          />
+            style={[styles.icon, { marginLeft: 20, marginTop: 15 }]}
+        />
           <Text style={[additionalStyles.label, styles.text]}>Rating</Text>
           <Text style={[additionalStyles.input, styles.text]}>
             {post.rating}/5
@@ -109,16 +107,17 @@ export default function ShowScreen({ navigation, route }) {
 
 const additionalStyles = StyleSheet.create({
   input: {
-    fontSize: 25,
+    fontSize: 22,
     borderWidth: 0,
     borderColor: "black",
-    marginVertical: 10,
+    marginVertical: 8,
     marginLeft: 20,
   },
   header: {
-    fontSize: 30,
+    fontSize: 28,
     marginVertical: 20,
     marginLeft: 20,
+    color: "#3F5362"
     
   },
   label: {
@@ -130,7 +129,7 @@ const additionalStyles = StyleSheet.create({
   },
   paragraph: {
     fontSize: 20,
-    marginBottom: 10,
+    marginBottom: 15,
     marginLeft: 20,
     
   },

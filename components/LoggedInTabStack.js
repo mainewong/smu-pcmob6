@@ -26,10 +26,10 @@ export default function LoggedInStack() {
       })}
       tabBarOptions={{
         activeTintColor: '#3F5362',
-        inactiveTintColor: '#D6C6B8',
-        tabStyle: {
-          backgroundColor: isDark ? "#181818" : "white",
-        }
+        inactiveTintColor: '#C7B6A6',
+        // tabStyle: {
+        //   backgroundColor: isDark ? "#181818" : "white",
+        // }
       }}
       >
         <Tab.Screen name="Reviews" component={BlogStack} />
