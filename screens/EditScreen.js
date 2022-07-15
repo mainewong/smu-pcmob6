@@ -132,6 +132,7 @@ export default function EditScreen({ navigation, route }) {
   );
 }
 
+
 const additionalStyles = StyleSheet.create({
   input: {
     fontSize: 20,
