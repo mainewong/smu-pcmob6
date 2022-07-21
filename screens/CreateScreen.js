@@ -43,7 +43,8 @@ export default function CreateScreen({ navigation }) {
     try {
       //
       console.log(token);
-      const response = await axios.post(API + API_CREATE, post, {
+      const response = await axios.post("https://adoption-app-4ce78-default-rtdb.asia-southeast1.firebasedatabase.app/post.json"
+      , post, {
         headers: { Authorization: `JWT ${token}` },
       });
       console.log(response.data);
