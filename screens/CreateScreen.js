@@ -41,6 +41,7 @@ export default function CreateScreen({ navigation }) {
     };
 
     try {
+      //
       console.log(token);
       const response = await axios.post(API + API_CREATE, post, {
         headers: { Authorization: `JWT ${token}` },
